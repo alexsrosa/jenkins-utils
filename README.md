@@ -43,9 +43,14 @@ The method `validateLastMessageCommit` from class `GitMessageCommit` validates i
 Following usage example:
 
 ``` 
-    stage("Validate Commit"){
-        if(env.BRANCH_NAME == 'master'){
-            new org.fundacred.jenkins.utils.git.GitMessageCommit(this).validateLastMessageCommit()
+    stage('Git message validation'){
+        when {
+            branch 'master'
+        }
+        steps {
+            script {
+                new GitStage(this).validationGoal()
+            }
         }
     }
 ```
@@ -61,9 +66,14 @@ The method `generateNewTag` from class `GitTags` generate a new git tag taking i
 Following usage example:
 
 ``` 
-    stage("Increment Tag"){
-        if(env.BRANCH_NAME == 'master'){
-            new org.fundacred.jenkins.utils.git.GitTags(this).generateNewTag()
+    stage('New Git Tag Creation'){
+        when {
+            branch 'master'
+        }
+        steps {
+            script {
+                new GitStage(this).newTagGoal()
+            }
         }
     }
 ```
@@ -115,9 +125,14 @@ tem origem de um pull request. Caso contrario, ira retornar um exception e final
 Segue exemplo de utilização:
 
 ``` 
-    stage("Validate Commit"){
-        if(env.BRANCH_NAME == 'master'){
-            new org.fundacred.jenkins.utils.git.GitMessageCommit(this).validateLastMessageCommit()
+    stage('Git message validation'){
+        when {
+            branch 'master'
+        }
+        steps {
+            script {
+                new GitStage(this).validationGoal()
+            }
         }
     }
 ```
@@ -134,9 +149,14 @@ o tipo do último merge feito.
 Segue exemplo de utilização:
 
 ``` 
-    stage("Increment Tag"){
-        if(env.BRANCH_NAME == 'master'){
-            new org.fundacred.jenkins.utils.git.GitTags(this).generateNewTag()
+    stage('New Git Tag Creation'){
+        when {
+            branch 'master'
+        }
+        steps {
+            script {
+                new GitStage(this).newTagGoal()
+            }
         }
     }
 ```
